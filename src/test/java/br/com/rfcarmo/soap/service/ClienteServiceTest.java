@@ -29,6 +29,8 @@ class ClienteServiceTest {
                 () -> service.criarCliente("  ", "ana@example.com"));
         assertThrows(DadosInvalidosException.class,
                 () -> service.criarCliente("Ana", "email-invalido"));
+        assertThrows(DadosInvalidosException.class,
+                () -> service.criarCliente("Ana", "ana @example.com"));
     }
 
     @Test

@@ -9,12 +9,8 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.regex.Pattern;
 
 public class ClienteService {
-
-    private static final Pattern EMAIL_VALIDO =
-            Pattern.compile("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
 
     private final ConcurrentMap<Long, Cliente> clientes = new ConcurrentHashMap<>();
     private final AtomicLong proximoId = new AtomicLong(1);
@@ -54,8 +50,26 @@ public class ClienteService {
         if (nome == null || nome.isEmpty()) {
             throw new DadosInvalidosException("O nome é obrigatório.");
         }
-        if (email == null || !EMAIL_VALIDO.matcher(email).matches()) {
+        if (!emailValido(email)) {
             throw new DadosInvalidosException("O email informado é inválido.");
         }
+    }
+
+    private boolean emailValido(String email) {
+        if (email == null) {
+            return false;
+        }
+        int arroba = email.indexOf('@');
+        int ponto = email.indexOf('.', arroba + 1);
+        if (arroba <= 0 || arroba != email.lastIndexOf('@')
+                || ponto <= arroba + 1 || ponto == email.length() - 1) {
+            return false;
+        }
+        for (int i = 0; i < email.length(); i++) {
+            if (Character.isWhitespace(email.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }
