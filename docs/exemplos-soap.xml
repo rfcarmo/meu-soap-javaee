@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Exemplos ilustrativos. Execute criarCliente antes de buscar/listar; IDs reiniciam a cada execução. -->
+<exemplos>
+  <criarCliente>
+    <requisicao>
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                        xmlns:cli="http://soap.rfcarmo.com.br/cliente">
+        <soapenv:Header/>
+        <soapenv:Body>
+          <cli:criarCliente>
+            <nome>Ana Silva</nome>
+            <email>ana@example.com</email>
+          </cli:criarCliente>
+        </soapenv:Body>
+      </soapenv:Envelope>
+    </requisicao>
+    <resposta>
+      <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+        <soap:Body>
+          <criarClienteResponse xmlns="http://soap.rfcarmo.com.br/cliente">
+            <return><id>1</id><nome>Ana Silva</nome><email>ana@example.com</email></return>
+          </criarClienteResponse>
+        </soap:Body>
+      </soap:Envelope>
+    </resposta>
+  </criarCliente>
+  <buscarCliente>
+    <requisicao>
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                        xmlns:cli="http://soap.rfcarmo.com.br/cliente">
+        <soapenv:Header/>
+        <soapenv:Body>
+          <cli:buscarCliente><id>1</id></cli:buscarCliente>
+        </soapenv:Body>
+      </soapenv:Envelope>
+    </requisicao>
+    <resposta>
+      <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+        <soap:Body>
+          <buscarClienteResponse xmlns="http://soap.rfcarmo.com.br/cliente">
+            <return><id>1</id><nome>Ana Silva</nome><email>ana@example.com</email></return>
+          </buscarClienteResponse>
+        </soap:Body>
+      </soap:Envelope>
+    </resposta>
+  </buscarCliente>
+  <listarClientes>
+    <requisicao>
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                        xmlns:cli="http://soap.rfcarmo.com.br/cliente">
+        <soapenv:Header/>
+        <soapenv:Body>
+          <cli:listarClientes/>
+        </soapenv:Body>
+      </soapenv:Envelope>
+    </requisicao>
+    <resposta>
+      <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+        <soap:Body>
+          <listarClientesResponse xmlns="http://soap.rfcarmo.com.br/cliente">
+            <return><id>1</id><nome>Ana Silva</nome><email>ana@example.com</email></return>
+          </listarClientesResponse>
+        </soap:Body>
+      </soap:Envelope>
+    </resposta>
+  </listarClientes>
+</exemplos>
